@@ -123,15 +123,15 @@ class SubscopeDetector(Ncm2Base):
 
             new_ctx['scope_offset'] = match.start(2)
             new_ctx['scope_len'] = len(new_src)
-            scope_lnum_col = self.pos2lccol(match.start(2), src)
-            new_ctx['scope_lnum'] = scope_lnum_col[0]
-            new_ctx['scope_ccol'] = scope_lnum_col[1]
+            lccol = self.pos2lccol(match.start(2), src)
+            new_ctx['scope_lnum'] = lccol[0]
+            new_ctx['scope_ccol'] = lccol[1]
 
             sub_pos = pos - match.start(2)
-            sub_lnum_col = self.pos2lccol(sub_pos, new_src)
-            logger.debug('sub_pos %s new_src %s lnum ccol %s', sub_pos, new_src, sub_lnum_col)
-            new_ctx['lnum'] = sub_lnum_col[0]
-            new_ctx['ccol'] = sub_lnum_col[1]
+            lccol = self.pos2lccol(sub_pos, new_src)
+            logger.debug('sub_pos %s new_src %s lnum ccol %s', sub_pos, new_src, lccol)
+            new_ctx['lnum'] = lccol[0]
+            new_ctx['ccol'] = lccol[1]
             return new_ctx
 
         return None
